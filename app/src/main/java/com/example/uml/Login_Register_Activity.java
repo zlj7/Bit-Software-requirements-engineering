@@ -9,6 +9,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Pair;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -27,7 +28,8 @@ public class Login_Register_Activity extends AppCompatActivity
         ImageView login=(ImageView) findViewById(R.id.register_button_image);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
                 loginJudge();
             }
         });
@@ -39,6 +41,7 @@ public class Login_Register_Activity extends AppCompatActivity
         {
             @Override
             public void onClick(View view) {
+
                 Intent intent=new Intent(Login_Register_Activity.this,Register_Activity.class);
                 startActivity(intent);
             }
@@ -61,17 +64,26 @@ public class Login_Register_Activity extends AppCompatActivity
             int accountNum = cursor.getInt(MyTool.myAbs(cursor.getColumnIndex("account")));
             String accountJudge=Integer.toString(accountNum);
             String userName=cursor.getString(MyTool.myAbs(cursor.getColumnIndex("userName")));
+            String statusText=cursor.getString(MyTool.myAbs(cursor.getColumnIndex("status")));
             String passwordJudge=cursor.getString(MyTool.myAbs(cursor.getColumnIndex("password")));
             if(accountJudge.equals(accountText) && passwordJudge.equals(passwordText))
             {
+                String[] userInfo={accountJudge,passwordJudge,userName};
                 AlertDialog.Builder dialog=new AlertDialog.Builder(Login_Register_Activity.this);
                 dialog.setTitle("登录成功");
-                dialog.setMessage("欢迎回来,"+userName);
+                dialog.setMessage("欢迎回来, "+statusText+": "+userName);
                 dialog.setCancelable(false);
                 dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-
+                        Intent intent;
+                        if(statusText.equals("admin"))
+                            intent=new Intent(Login_Register_Activity.this,Admin_Activity.class);
+                        else{
+                            intent=new Intent(Login_Register_Activity.this,MainActivity.class);
+                            intent.putExtra("userInfo",userInfo);
+                        }
+                        startActivity(intent);
                     }
                 });
                 dialog.show();

@@ -2,26 +2,65 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.uml">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.UML">
+        android:theme="@style/Theme.UML"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".SheduleActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ExamActivity"
+            android:exported="false" />
+        <activity
+            android:name=".YanheActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LexueActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Admin_Activity"
+            android:exported="true"
+            android:launchMode="singleInstance" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+            android:exported="true"
+            android:launchMode="singleInstance">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <!--
+                     Include the host attribute if you want your app to respond
+                     only to URLs with your app's domain.
+                -->
+                <data
+                    android:host="www.example.com"
+                    android:scheme="http" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <!-- The BROWSABLE category is required to get links from web pages. -->
+                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".AMActivity"
-            android:exported="false" />
+            android:exported="true"
+            android:launchMode="singleInstance" />
         <activity
             android:name=".Register_Activity"
+            android:exported="true"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".InsertUserActivity"
+            android:exported="true"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".QueryActivity"
             android:exported="true"
             android:launchMode="singleInstance" />
         <activity

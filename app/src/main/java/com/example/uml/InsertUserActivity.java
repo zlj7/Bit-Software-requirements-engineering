@@ -2,6 +2,7 @@ package com.example.uml;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -11,19 +12,16 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-public class Register_Activity extends AppCompatActivity
-{
+public class InsertUserActivity extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.activity_insert_user);
         this.initCheckSexBox();//初始化性别单选框
         this.initCheckStatusBox();//初始化身份单选框
-        this.goToLoginActivity();//跳转登录活动
         ImageView register=(ImageView)findViewById(R.id.register_button_image);
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -31,18 +29,7 @@ public class Register_Activity extends AppCompatActivity
                 databaseOperate();//数据库操作
             }
         });
-    }
-    private void goToLoginActivity()//跳转登录活动
-    {
-        TextView register_connect=(TextView) findViewById(R.id.userid_text3);
-        register_connect.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(Register_Activity.this,Login_Register_Activity.class);
-                startActivity(intent);
-            }
-        });
+
     }
     private void initCheckSexBox()
     {
@@ -142,14 +129,16 @@ public class Register_Activity extends AppCompatActivity
         if(accountText.equals(""))
         {
 
-            AlertDialog.Builder dialog=new AlertDialog.Builder(Register_Activity.this);
-            dialog.setTitle("无效注册");
+            AlertDialog.Builder dialog=new AlertDialog.Builder(InsertUserActivity.this);
+            dialog.setTitle("无效添加");
             dialog.setMessage("请输入账户!");
             dialog.setCancelable(false);
             dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-
+                    Intent intent=new Intent(InsertUserActivity.this,Admin_Activity.class);
+                    startActivity(intent);
+                    finish();
                 }
             });
             dialog.show();
@@ -157,14 +146,16 @@ public class Register_Activity extends AppCompatActivity
         }
         if(passwordText.equals(""))
         {
-            AlertDialog.Builder dialog=new AlertDialog.Builder(Register_Activity.this);
-            dialog.setTitle("无效注册");
+            AlertDialog.Builder dialog=new AlertDialog.Builder(InsertUserActivity.this);
+            dialog.setTitle("无效添加");
             dialog.setMessage("请输入密码!");
             dialog.setCancelable(false);
             dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-
+                    Intent intent=new Intent(InsertUserActivity.this,Admin_Activity.class);
+                    startActivity(intent);
+                    finish();
                 }
             });
             dialog.show();
@@ -172,28 +163,32 @@ public class Register_Activity extends AppCompatActivity
         }
         if(nameText.equals(""))
         {
-            AlertDialog.Builder dialog=new AlertDialog.Builder(Register_Activity.this);
-            dialog.setTitle("无效注册");
+            AlertDialog.Builder dialog=new AlertDialog.Builder(InsertUserActivity.this);
+            dialog.setTitle("无效添加");
             dialog.setMessage("请输入昵称!");
             dialog.setCancelable(false);
             dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-
+                    Intent intent=new Intent(InsertUserActivity.this,Admin_Activity.class);
+                    startActivity(intent);
+                    finish();
                 }
             });
             dialog.show();
             return;
         }if(emailText.equals(""))
     {
-        AlertDialog.Builder dialog=new AlertDialog.Builder(Register_Activity.this);
-        dialog.setTitle("无效注册");
+        AlertDialog.Builder dialog=new AlertDialog.Builder(InsertUserActivity.this);
+        dialog.setTitle("无效添加");
         dialog.setMessage("请输入邮箱!");
         dialog.setCancelable(false);
         dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-
+                Intent intent=new Intent(InsertUserActivity.this,Admin_Activity.class);
+                startActivity(intent);
+                finish();
             }
         });
         dialog.show();
@@ -201,14 +196,16 @@ public class Register_Activity extends AppCompatActivity
     }
         if(phoneText.equals(""))
         {
-            AlertDialog.Builder dialog=new AlertDialog.Builder(Register_Activity.this);
-            dialog.setTitle("无效注册");
+            AlertDialog.Builder dialog=new AlertDialog.Builder(InsertUserActivity.this);
+            dialog.setTitle("无效添加");
             dialog.setMessage("请输入手机号!");
             dialog.setCancelable(false);
             dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-
+                    Intent intent=new Intent(InsertUserActivity.this,Admin_Activity.class);
+                    startActivity(intent);
+                    finish();
                 }
             });
             dialog.show();
@@ -216,14 +213,16 @@ public class Register_Activity extends AppCompatActivity
         }
         if(!IsMale && !IsFemale)
         {
-            AlertDialog.Builder dialog=new AlertDialog.Builder(Register_Activity.this);
-            dialog.setTitle("无效注册");
+            AlertDialog.Builder dialog=new AlertDialog.Builder(InsertUserActivity.this);
+            dialog.setTitle("无效添加");
             dialog.setMessage("请输入性别!");
             dialog.setCancelable(false);
             dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-
+                    Intent intent=new Intent(InsertUserActivity.this,Admin_Activity.class);
+                    startActivity(intent);
+                    finish();
                 }
             });
             dialog.show();
@@ -231,14 +230,16 @@ public class Register_Activity extends AppCompatActivity
         }
         if(!IsStudent && !IsTeacher && !IsAdmin)
         {
-            AlertDialog.Builder dialog=new AlertDialog.Builder(Register_Activity.this);
-            dialog.setTitle("无效注册");
+            AlertDialog.Builder dialog=new AlertDialog.Builder(InsertUserActivity.this);
+            dialog.setTitle("无效添加");
             dialog.setMessage("请输入身份!");
             dialog.setCancelable(false);
             dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-
+                    Intent intent=new Intent(InsertUserActivity.this,Admin_Activity.class);
+                    startActivity(intent);
+                    finish();
                 }
             });
             dialog.show();
@@ -246,14 +247,16 @@ public class Register_Activity extends AppCompatActivity
         }
         if(!MyTool.isNumeric(accountText))
         {
-            AlertDialog.Builder dialog=new AlertDialog.Builder(Register_Activity.this);
-            dialog.setTitle("无效注册");
+            AlertDialog.Builder dialog=new AlertDialog.Builder(InsertUserActivity.this);
+            dialog.setTitle("无效添加");
             dialog.setMessage("账号只能由数字构成!");
             dialog.setCancelable(false);
             dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-
+                    Intent intent=new Intent(InsertUserActivity.this,Admin_Activity.class);
+                    startActivity(intent);
+                    finish();
                 }
             });
             dialog.show();
@@ -261,14 +264,16 @@ public class Register_Activity extends AppCompatActivity
         }
         if(!MyTool.isNumeric(phoneText))
         {
-            AlertDialog.Builder dialog=new AlertDialog.Builder(Register_Activity.this);
-            dialog.setTitle("无效注册");
+            AlertDialog.Builder dialog=new AlertDialog.Builder(InsertUserActivity.this);
+            dialog.setTitle("无效添加");
             dialog.setMessage("手机号只能由数字构成!");
             dialog.setCancelable(false);
             dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-
+                    Intent intent=new Intent(InsertUserActivity.this,Admin_Activity.class);
+                    startActivity(intent);
+                    finish();
                 }
             });
             dialog.show();
@@ -284,19 +289,19 @@ public class Register_Activity extends AppCompatActivity
         databaseOp.execSQL("insert into usersInfo(account,password,userName,email,phone,sex,status) " +
                         "values (?,?,?,?,?,?,?)",
                 new String[]{accountText,passwordText,nameText,emailText,phoneText,sexText,statusText});
-        AlertDialog.Builder dialog=new AlertDialog.Builder(Register_Activity.this);
-        dialog.setTitle("注册成功");
-        dialog.setMessage("您已注册成功,请牢记账号密码！");
+        AlertDialog.Builder dialog=new AlertDialog.Builder(InsertUserActivity.this);
+        dialog.setTitle("操作成功");
+        dialog.setMessage("用户添加成功！");
         dialog.setCancelable(false);
         dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                Intent intent=new Intent(Register_Activity.this,Login_Register_Activity.class);
+                Intent intent=new Intent(InsertUserActivity.this,Admin_Activity.class);
                 startActivity(intent);
+                finish();
             }
         });
         dialog.show();
         myDatabase.close();
     }
-
 }
