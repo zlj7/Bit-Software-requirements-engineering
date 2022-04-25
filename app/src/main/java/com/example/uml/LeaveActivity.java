@@ -7,15 +7,15 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-public class LexueActivity extends AppCompatActivity {
+public class LeaveActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lexue);
-        WebView lexue = (WebView) findViewById(R.id.lexue);
-        lexue.loadUrl("https://lexue.bit.edu.cn/");
-        WebSettings webSettings = lexue.getSettings();//获得WebView的设置
+        setContentView(R.layout.activity_leave);
+        WebView leave = (WebView) findViewById(R.id.leave);
+        leave.loadUrl("http://stu.bit.edu.cn/xsfw/sys/swmxsqjapp/*default/index.do");
+        WebSettings webSettings = leave.getSettings();//获得WebView的设置
         webSettings.setUseWideViewPort(true);// 设置此属性，可任意比例缩放
         webSettings.setLoadWithOverviewMode(true);//适配
         webSettings.setJavaScriptEnabled(true);  //支持js
@@ -25,7 +25,7 @@ public class LexueActivity extends AppCompatActivity {
         webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);//HTTPS，注意这个是在LOLLIPOP以上才调用的
         webSettings.setAppCacheEnabled(true);//开启 Application Caches 功能
         webSettings.setBlockNetworkImage(false);//关闭加载网络图片，在一开始加载的时候可以设置为true，当加载完网页的时候再设置为false
-        lexue.setWebViewClient(new WebViewClient(){
+        leave.setWebViewClient(new WebViewClient(){
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);
